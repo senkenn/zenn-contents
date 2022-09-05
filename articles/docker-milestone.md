@@ -1,6 +1,6 @@
 ---
 title: "Dockerマイルストーン"
-emoji: "👌"
+emoji: "🐳"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["docker", "vscode", "react", "mysql"]
 published: false
@@ -9,14 +9,14 @@ published: false
 ## はじめに <!-- omit in toc -->
 
 * この記事の対象者
-  この記事はDockerをどのようなステップで勉強していけばいいかわからないというDocker初心者向けです。
+  * この記事はDockerをどのようなステップで勉強していけばいいかわからないというDocker初心者向けです。
 * 各ステップのファイルについて
-  * ソースコードは[こちら](https://github.com/senkenn/docker-milestone)です。git cloneなり、写経なり自由に使ってください。
+  * ソースコードは[こちら](https://github.com/senkenn/docker-milestone)です。git cloneなり、写経なりして自由に使ってください。
   * ブランチ毎に分けています。適時切り替えて参照してください。
 * 注意
-  細かい用語や説明は省くことがあります。Dockerの詳細は[こちらのQiitaの記事](https://qiita.com/gold-kou/items/44860fbda1a34a001fc1)がおすすめです。
+  * 細かい用語や説明は省くことがあります。Dockerの詳細は[こちらのQiitaの記事](https://qiita.com/gold-kou/items/44860fbda1a34a001fc1)がおすすめです。
 * その他
-  この記事はVSCodeの拡張機能の[Markdown Preview Enhanced](https://github.com/shd101wyy/markdown-preview-enhanced)の[Code Chunk](https://github.com/shd101wyy/markdown-preview-enhanced/blob/master/docs/ja-jp/code-chunk.md)が使えます。ぜひお試しください。
+  * この記事はVSCodeの拡張機能の[Markdown Preview Enhanced](https://github.com/shd101wyy/markdown-preview-enhanced)の[Code Chunk](https://github.com/shd101wyy/markdown-preview-enhanced/blob/master/docs/ja-jp/code-chunk.md)が使えます。ぜひお試しください。
 
 ## この記事の最終的なゴール <!-- omit in toc -->
 
