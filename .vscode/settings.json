@@ -1,0 +1,31 @@
+{
+  "cSpell.words": [
+    "senkenn",
+    "voltarc",
+    "zenn"
+  ],
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": false
+  }
+  },
+  "markdown.extension.toc.orderedList": false,
+  "markdown.extension.orderedList.marker": "one",
+  "markdown-preview-enhanced.previewTheme": "one-dark.css",
+  "markdown-preview-enhanced.enableScriptExecution": true,
+  "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true,
+  "multiCommand.commands": [
+    {
+      "command": "multiCommand.saveMarkdown",
+      "sequence": [
+        "markdownlint.fixAll",
+        "markdown.extension.toc.addSecNumbers",
+        "workbench.action.files.save"
+      ]
+    }
+  ],
+  "pasteImage.path": "../images/${fileBasenameNoExtension}",
+}
