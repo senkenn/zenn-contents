@@ -23,7 +23,7 @@
       "command": "multiCommand.saveMarkdown",
       "sequence": [
         "markdownlint.fixAll",
-        "markdown.extension.toc.addSecNumbers",
+        // "markdown.extension.toc.addSecNumbers",
         "workbench.action.files.save"
       ]
     }
