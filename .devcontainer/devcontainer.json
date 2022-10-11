@@ -26,6 +26,7 @@
 				"shd101wyy.markdown-preview-enhanced",
 				"DavidAnson.vscode-markdownlint",
 				"mushan.vscode-paste-image",
+				"bpruitt-goddard.mermaid-markdown-syntax-highlighting",
 			]
 		}
 	},
