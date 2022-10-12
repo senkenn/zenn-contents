@@ -3,7 +3,7 @@ title: "ESP32でスマートロック作ってみた"
 emoji: "🗂"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [eps32, Arduino, 電子工作, 電子回路]
-published: false
+published: true
 ---
 
 ## 作ったもの
