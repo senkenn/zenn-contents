@@ -3,7 +3,7 @@ title: "複数行のコードのコメント解除が簡単にできるVSCodeの
 emoji: "🎉"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["VSCode", "vscode拡張機能", "TypeScript"]
-published: false
+published: true
 ---
 
 ## 何を作ったの？
