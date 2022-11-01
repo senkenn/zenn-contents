@@ -15,7 +15,7 @@
   },
   "markdown.extension.toc.orderedList": false,
   "markdown.extension.orderedList.marker": "one",
-  "markdown-preview-enhanced.previewTheme": "solarized-light.css",
+  "markdown-preview-enhanced.previewTheme": "one-dark.css",
   "markdown-preview-enhanced.enableScriptExecution": true,
   "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true,
   "multiCommand.commands": [
