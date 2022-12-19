@@ -40,4 +40,13 @@ RUN echo "zstyle ':prezto:module:prompt' theme 'powerlevel10k'" >> $HOME/.zprezt
 COPY ./.p10k.zsh /root/.p10k.zsh
 RUN echo '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' >> $HOME/.zshrc
 
+# SSHの鍵を設定
+RUN mkdir $HOME/.ssh
+RUN echo 'Host github.com' >> $HOME/.ssh/config \
+  && echo '  HostName ssh.github.com' >> $HOME/.ssh/config \
+  && echo '  IdentityFile /workspace/.ssh/id_rsa' >> $HOME/.ssh/config \
+  && echo '  User git' >> $HOME/.ssh/config \
+  && echo '  Port 443' >> $HOME/.ssh/config \
+  && echo '  StrictHostKeyChecking no' >> $HOME/.ssh/config
+
 WORKDIR /workspace
