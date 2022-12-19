@@ -2,15 +2,12 @@
   "name": "zenn-contents",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:senkenn/zenn-connects.git",
+  "repository": "git@github.com:senkenn/zenn-contents.git",
   "license": "MIT",
   "devDependencies": {
-    "zenn-cli": "^0.1.121"
+    "zenn-cli": "^0.1.134"
   },
   "scripts": {
     "start": "npx zenn preview"
-  },
-  "volta": {
-    "extends": "./.voltarc.json"
   }
 }
