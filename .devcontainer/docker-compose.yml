@@ -5,9 +5,12 @@ services:
     container_name: zenn
     build:
       context: ./base
+      args:
+        - CONTAINER_USER=vscode
     tty: true
     volumes:
-      - $HOME:$HOME
+      - $HOME:$HOME # to check local uid
+      - $HOME:/home/vscode # mount user settings
     environment:
       - LOCAL_USER=$USER
       - CONTAINER_USER=vscode
