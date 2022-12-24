@@ -1,26 +1,24 @@
 FROM node:18
 
-RUN apt-get update
+RUN apt-get update && apt-get install -y sudo zsh
 
-RUN apt-get install \
-  ca-certificates \
-  curl \
-  gnupg \
-  lsb-release \
-  zsh
-
-# Install Docker Engine
-RUN mkdir -p /etc/apt/keyrings
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-RUN echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-  $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
-RUN apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+# Add non administrative user
+ENV CONTAINER_USER=vscode
+ENV PASSWORD=${CONTAINER_USER}
+ENV UID=9999
+RUN useradd -mu ${UID} -s /bin/bash -G sudo ${CONTAINER_USER} && \
+  echo ${CONTAINER_USER}:$PASSWORD | chpasswd && \
+  echo "${CONTAINER_USER}   ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # ZSHの設定
-RUN zsh
 ENV SHELL /usr/bin/zsh
-RUN sed -i.bak "s|$HOME:|$HOME:$SHELL|" /etc/passwd
+RUN sudo sed -i.bak "s|/home/${CONTAINER_USER}:|/home/${CONTAINER_USER}:$SHELL|" /etc/passwd
+
+USER vscode
+WORKDIR $HOME
+RUN zsh
+
+RUN echo $HOME
 
 # ZSH用の拡張機能(prezto)
 RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto
@@ -33,20 +31,12 @@ RUN ln -s $HOME/.zprezto/runcoms/zlogin    $HOME/.zlogin \
 RUN echo "export LANG=ja_JP.UTF-8" >> $HOME/.zshrc
 
 # ZSHのPATHを設定
-# RUN echo 'export PATH="/usr/bin:$PATH"' >> $HOME/.zshrc
 RUN echo "zstyle ':prezto:module:prompt' theme 'powerlevel10k'" >> $HOME/.zpreztorc
 
 # p10kの設定ファイルを適用
-COPY ./.p10k.zsh /root/.p10k.zsh
+COPY ./.p10k.zsh /home/${CONTAINER_USER}
 RUN echo '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' >> $HOME/.zshrc
+RUN echo 'alias ll="ls -AlF"' >> $HOME/.zshrc
 
-# SSHの鍵を設定
-RUN mkdir $HOME/.ssh
-RUN echo 'Host github.com' >> $HOME/.ssh/config \
-  && echo '  HostName ssh.github.com' >> $HOME/.ssh/config \
-  && echo '  IdentityFile /workspace/.ssh/id_rsa' >> $HOME/.ssh/config \
-  && echo '  User git' >> $HOME/.ssh/config \
-  && echo '  Port 443' >> $HOME/.ssh/config \
-  && echo '  StrictHostKeyChecking no' >> $HOME/.ssh/config
-
-WORKDIR /workspace
+COPY ./entrypoint.sh .
+ENTRYPOINT [ "./entrypoint.sh" ]

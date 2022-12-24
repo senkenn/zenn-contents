@@ -2,7 +2,7 @@
 	"name": "${localWorkspaceFolderBasename}",
 	"service": "zenn",
 	"dockerComposeFile": "docker-compose.yml",
-	"workspaceFolder": "/workspace",
+	"workspaceFolder": "${localWorkspaceFolder}",
 	"customizations": {
 		"vscode": {
 			// この設定はRemote Dev Container Settings.jsonの方に書かれ、workspaceの方には反映されないので注意
@@ -22,4 +22,5 @@
 		}
 	},
 	"postCreateCommand": "yarn",
+	"remoteUser": "vscode",
 }
