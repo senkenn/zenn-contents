@@ -2,7 +2,6 @@
   "cSpell.words": [
     "Qiita",
     "senkenn",
-    "voltarc",
     "zenn"
   ],
   "[markdown]": {
@@ -11,7 +10,7 @@
       "other": true,
       "comments": false,
       "strings": false
-  }
+    }
   },
   "markdown.extension.toc.orderedList": false,
   "markdown.extension.orderedList.marker": "one",

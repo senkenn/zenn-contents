@@ -8,6 +8,7 @@
     "zenn-cli": "^0.1.134"
   },
   "scripts": {
-    "start": "npx zenn preview"
+    "start": "zenn preview",
+    "new": "zenn new:article"
   }
 }
