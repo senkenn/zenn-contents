@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # get UID from local user
-uid=$(stat -c "%u" /home/$LOCAL_USER)
+uid=$(stat -c "%u" /workspace)
 echo $LOCAL_USER $uid
 
 EXISTING_USER=$(id -nu $uid)

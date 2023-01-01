@@ -9,8 +9,7 @@ services:
         - CONTAINER_USER=vscode
     tty: true
     volumes:
-      - $HOME:$HOME # to check local uid
-      - $HOME:/home/vscode # mount user settings
+      - ../:/workspace
     environment:
       - LOCAL_USER=$USER
       - CONTAINER_USER=vscode
