@@ -5,7 +5,7 @@
   "repository": "git@github.com:senkenn/zenn-contents.git",
   "license": "MIT",
   "devDependencies": {
-    "zenn-cli": "^0.1.134"
+    "zenn-cli": "latest"
   },
   "scripts": {
     "start": "zenn preview",
