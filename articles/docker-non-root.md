@@ -25,7 +25,7 @@ Dockerを使って開発しているとローカルのホストとマウント�
 
 ざっくりいうと、Dockerfile内でユーザーを作成したあと、コンテナ作成後に実行される`entrypoint.sh`ファイルで、ローカルのUID/GIDに書き換えるというものです。
 
-この問題を解決するに当たりいくつかの記事を拝見しましたが、多かったのはDockerfile内にローカルのIDを直接書いてユーザーを作成したり、docker runコマンド時に引数に渡したりとひと手間いるものばかでした。どうにかどんな環境でも自動的に、それもコマンドなしでコンテナに入れないかと探していたらこちらを見つけました。おそらく（スクリプトの書き方に違いはあれど）これがベストプラクティスなんじゃないかと思います。
+この問題を解決するに当たりいくつかの記事を拝見しましたが、多かったのはDockerfile内にローカルのIDを直接書いてユーザーを作成したり、docker runコマンド時に引数に渡したりとひと手間いるものばかりでした。どうにかどんな環境でも自動的に、それもコマンドなしでコンテナに入れないかと探していたらこちらを見つけました。おそらく（スクリプトの書き方に違いはあれど）これがベストプラクティスなんじゃないかと思います。
 
 この記事では指定のユーザーが既に存在していた場合（例えばnodeイメージのnodeユーザー）に対応していなかったので、同じIDのユーザーやグループがある場合は削除するように加筆しました。
 
@@ -89,7 +89,7 @@ VSCodeのDev Containers拡張機能を使えばコマンドなしでコンテナ
 
 コンテナ内のユーザーがrootでもいいのであれば、一度、rootユーザーのDockerコンテナをつくったあと、その中で更にrootユーザーでコンテナを作る、つまりDocker in/from Dockerが楽だと思います。
 
-Docker内でDocker使いたければ、"Docker in Docker"のイメージを使っったり、デーモンをマウントする"Docker from Docker"がベターだと思いますが、VSCodeだと、[公式で`devcontainer.json`に以下を追記すれば使えるよ](https://github.com/devcontainers/features/tree/main/src/docker-in-docker)と書いてあります。
+Docker内でDocker使いたければ、"Docker in Docker"のイメージを使ったり、デーモンをマウントする"Docker from Docker"がベターだと思いますが、VSCodeだと、公式の方で[`devcontainer.json`に以下を追記すれば使えるよ](https://github.com/devcontainers/features/tree/main/src/docker-in-docker)と書いてあります。
 
 ```json:devcontainer.json
 "features": {
@@ -99,7 +99,7 @@ Docker内でDocker使いたければ、"Docker in Docker"のイメージを使�
 
 ただし、注意点として２点、
 
-* Dev Containersウィンドウを開いたあと、更にそのコンテナ上でDev Containersウィンドウを開けるわけではない。結局CLI上でコンテナを起動するだけ。
+* Dev Containersウィンドウを開いたあと、更にそのコンテナ上でDev Containersウィンドウを開けるわけではない。結局CLI上でコンテナを起動できるだけ。
 * ビルド時はキャッシュが効かず、毎回時間がかかる。
 
 があるので、Dockerfileに書くほうがいいかな、、
