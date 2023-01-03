@@ -16,13 +16,13 @@
   "markdown.extension.orderedList.marker": "one",
   "markdown-preview-enhanced.previewTheme": "one-dark.css",
   "markdown-preview-enhanced.enableScriptExecution": true,
-  "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true,
+  "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": false,
   "multiCommand.commands": [
     {
       "command": "multiCommand.saveMarkdown",
       "sequence": [
         "markdownlint.fixAll",
-        // "markdown.extension.toc.addSecNumbers",
+        "markdown.extension.toc.addSecNumbers", // add "<!-- omit in toc -->" to the heading if you want to exclude
         "workbench.action.files.save"
       ]
     }
