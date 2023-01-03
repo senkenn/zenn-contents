@@ -13,5 +13,6 @@ services:
     environment:
       - LOCAL_USER=$USER
       - CONTAINER_USER=vscode
+      - WORKDIR=/workspace
     ports:
       - 8000:8000 # for npx zenn preview
