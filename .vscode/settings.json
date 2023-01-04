@@ -1,7 +1,9 @@
 {
   "cSpell.words": [
+    "gsettings",
     "Qiita",
     "senkenn",
+    "xremap",
     "zenn"
   ],
   "[markdown]": {
@@ -21,11 +23,11 @@
     {
       "command": "multiCommand.saveMarkdown",
       "sequence": [
-        "markdownlint.fixAll",
+        // "markdownlint.fixAll",
         "markdown.extension.toc.addSecNumbers", // add "<!-- omit in toc -->" to the heading if you want to exclude
         "workbench.action.files.save"
       ]
     }
   ],
-  "pasteImage.path": "../images/${fileBasenameNoExtension}",
+  "pasteImage.path": "../images/${currentFileNameWithoutExt}",
 }
