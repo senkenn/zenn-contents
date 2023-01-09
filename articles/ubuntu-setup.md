@@ -2,7 +2,7 @@
 title: "Ubuntu22.04インストール後にやることを（半）自動セットアップできるようにした"
 emoji: "✨"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["linux", "ubuntu"]
+topics: ["linux", "ubuntu", "ubuntu2204", "zsh", "vscode"]
 published: true
 ---
 
@@ -35,9 +35,9 @@ published: true
    * 日本語キーマップ
    * CopyQの設定
 
-## 1. Zshのインストール
+## 1. Zshのインストール <!--TODO: 修正-->
 
-Zsh及び、Preztoを使ってプラグインのPowerlevel10kをインストールします。
+Zsh及び、ZshプラグインのPowerlevel10kをインストールします。
 
 ```sh:ubuntu-setup/zsh/zsh-setup.sh
 #!/bin/bash
@@ -46,25 +46,15 @@ Zsh及び、Preztoを使ってプラグインのPowerlevel10kをインストー�
 sudo apt-get install -y zsh
 sudo sed -i.bak "s|$HOME:/bin/bash|$HOME:/bin/zsh|" /etc/passwd
 
-# install zsh extension (prezto)
-git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto
-ln -s $HOME/.zprezto/runcoms/zlogin    $HOME/.zlogin \
-  && ln -s $HOME/.zprezto/runcoms/zlogout   $HOME/.zlogout \
-  && ln -s $HOME/.zprezto/runcoms/zpreztorc $HOME/.zpreztorc \
-  && ln -s $HOME/.zprezto/runcoms/zprofile  $HOME/.zprofile \
-  && ln -s $HOME/.zprezto/runcoms/zshenv    $HOME/.zshenv \
-  && ln -s $HOME/.zprezto/runcoms/zshrc     $HOME/.zshrc
-echo "zstyle ':prezto:module:prompt' theme 'powerlevel10k'" >> $HOME/.zpreztorc
-echo 'alias d="docker"' >> $HOME/.zshrc
-echo 'alias dc="docker compose"' >> $HOME/.zshrc
-echo 'alias ll="ls -AlF"' >> $HOME/.zshrc
-echo '[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh' >> $HOME/.zshrc
+# Powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.p10k
+
+cp $HOME/ubuntu-setup/zsh/.zshrc $HOME
 cp $HOME/ubuntu-setup/zsh/.p10k.zsh $HOME
 ```
 
 Zshインストール後、sedコマンドでデフォルトのシェルをZshに変更しています。
-後半のechoメドレーはテーマをp10kにしたり、`~/.zshrc`にエイリアスとかを書き込んでいます。
-そして予め用意しておいたp10kの設定ファイル`.p10k.zsh`をホーム下にコピーします。
+そして予め用意しておいた`.zshrc`と、p10kの設定ファイル`.p10k.zsh`をホーム下にコピーします。
 
 ## 2. `ubuntu-setup.sh`ファイルの実行
 
@@ -244,14 +234,14 @@ cargo install xremap --features gnome
 
 @[card](https://k0kubun.hatenablog.com/entry/xremap)
 
-なお、これに関してはちょっと長くなりそうなので別記事で書きたいと思います。
-
 また、xremapをOS起動とともに自動で起動させるようにします。
 
 ```sh:ubuntu-setup.sh
 sudo cp $HOME/ubuntu-setup/xremap/xremap.service /etc/systemd/system/
 sudo systemctl enable xremap.service
 ```
+
+なお、これに関してはちょっと長くなりそうなので別記事で書きたいと思います。
 
 ## 14. Docker Engine
 
@@ -295,33 +285,68 @@ nodeやyarnなどのバージョン管理ツールです。
 ## 16. UbuntuのキーバインドやUIの変更
 
 gsettingsコマンドを使って変更していきます。基本的にWindowsっぽくしています。
+`gsettings.sh`ファイルにまとめています。
 
-```sh:gsettings.sh
+```sh
 # keybindings
+# 左のワークスペースに移動(Windows like)
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Super>Page_Up', '<Super><Alt>Left', '<Control><Super>Left']"
+
+# 右のワークスペースに移動(Windows like)
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Super>Page_Down', '<Super><Alt>Right', '<Control><Super>Right']"
+
+# 上のワークスペースに移動
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Control><Super>Up']"
+
+# 下のワークスペースに移動
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Control><Super>Down']"
+
+# ウィンドウのリサイズ。VSCodeの"Alt + F8"とかぶるので変更
+gsettings set org.gnome.desktop.wm.keybindings begin-resize "['<Super>F8']" # Because it conflicts with "Alt + F8" in VSCode
+
+# スクリーンショット(Windows like)
 gsettings set org.gnome.shell.keybindings show-screenshot-ui "['Print', '<Super><Shift>s']"
+
+# 通知トレイ
 gsettings set org.gnome.shell.keybindings toggle-message-tray "['<Ctrl><Super>v', '<Super>m']"
+
+# VSCodeの"Ctrl + .", "Ctrl + ;"とかぶるため変更
 gsettings set org.freedesktop.ibus.panel.emoji hotkey "[]" # previous setting: ['<Control>period', '<Control>semicolon']
 
 # UI
+# ダークテーマにする
 gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
-gsettings set org.gnome.desktop.interface font-name 'Noto Sans CJK JP 11' # Fix windswitcher extending and retracting up and down.
+
+# Fix windswitcher extending and retracting up and down.
+gsettings set org.gnome.desktop.interface font-name 'Noto Sans CJK JP 11'
+
+# ドックを先頭似表示
 gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
+
+# ドックを下部に配置
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position "BOTTOM"
+
+# ドックのアイコンサイズ
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 24
+
+# お気に入りにするアプリのリスト（順番も適用される）
 gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'code.desktop', 'org.gnome.Nautilus.desktop', 'discord.desktop', 'slack_slack.desktop']"
 
 # Others
+# ワークスペースを切り替えるときにすべてのディスプレイを切り替える
 gsettings set org.gnome.mutter workspaces-only-on-primary false # workspaces on all displays
+
+# 入力ソースでMozcを最初にする
 gsettings set org.gnome.desktop.input-sources sources "[('ibus', 'mozc-jp'), ('xkb', 'jp')]" # Change the order of input sources
+
+# 画面オフを15分にする
 gsettings set org.gnome.desktop.session idle-delay "uint32 900"
+
+# 画面オフ時に画面ロックしない
 gsettings set org.gnome.desktop.screensaver lock-enabled false
 ```
 
-ここらへんは個人の好みですね。基本的にGUIでできることはCUIでできますね。
+ここらへんは個人の好みですね。基本的にGUIでできることは全部CUIでできますね。
 
 UIはこんな感じ（ほんとは上のメニューバーも下に位置させたい、、、）
 ![](/images/ubuntu-setup/2023-01-05-17-09-16.png)
@@ -336,11 +361,28 @@ gsettings list-schemas | gsettings list-recursively
 
 あとはgrepとかで絞り込んで求めているものを探してました。
 
+## 17. 日本語キーボードのキーマップ
+
+私は日本語キーボードを使っていて、無変換をIMEオフに設定しています。ちなみにIMEオンはxremapを使って変換＋無変換でIMEオンにしています。
+設定をテキストファイルでエクスポートできるので、予めエクスポートしたものをインポートしていきます。
+
+Ubuntuの設定からキーボードでMozcの設定を開きます。ちなみにこれが開けない場合がありますが、大体は言語サポートで日本語をインストールしていないだと思います。
+![](/images/ubuntu-setup/2023-01-05-18-21-54.png)
+
+"Keymap style"の"Customize"から
+![](/images/ubuntu-setup/2023-01-05-22-58-55.png)
+
+"Edit"で"Import from file"からインポートするファイルを選びます。リポジトリには`keymap.txt`で置いてあります。
+![](/images/ubuntu-setup/2023-01-05-22-59-35.png)
+
+エクスポートも一番下の"Export to file"で行いました。
+ここも自動化できるのかな？できたらしたい。
+
 ## その他 <!-- omit in toc -->
 
 今回は、もともとWindows11が入っていたHPのPavilionのノートPCにUbuntu22.04をインストールしたのですが、いくつか問題がありました。
 
-* 起動時に黒いBIOS画面?で10行くらいの謎のエラー文が出る（問題なく起動できるので今は無視。おそらくドライバがないよとかのエラーだと思われる）
+* 起動時に黒いBIOS画面?で10行くらいの謎のエラー文が出る（今は特に問題なく動作しているので無視している。おそらくドライバがないよとかのエラーだと思われる）
 * トラックパッドのスワイプ操作などが動作しない
 * 指紋認証が反応しない
 
@@ -350,3 +392,4 @@ gsettings list-schemas | gsettings list-recursively
 
 * ファイアウォールの設定（今はコメントアウト中）
 * すべてが正常にインストールされているかのチェック
+* 日本語キーマップの自動インポート
