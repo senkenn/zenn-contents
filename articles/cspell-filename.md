@@ -12,8 +12,9 @@ published: true
 git diff --name-only --cached | npx cspell --no-progress --show-context stdin
 ```
 
-## 引用元
+## 補足説明
 
+引用元
 https://github.com/streetsidesoftware/cspell/issues/3063#issuecomment-1155651409
 
 私はlefthookなどのGitフックと組み合わせて使っています。
