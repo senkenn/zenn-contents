@@ -23,7 +23,7 @@ https://github.com/senkenn/discord-bot-x2twitter
 あります（作ったあとで気づきました）。
 
 まあ今回は Rust を触ってみたかったというのが大きいので別にいいです。得体の知れないものを使うよりはいいということにしておきます。
-FixTweet 公式の Bot は [Things to tackle in the future](https://github.com/FixTweet/FixTweet#things-to-tackle-in-the-future) で言っているようにまだない様ですが、サードパーティ生のものがあります。機能は今回私が作ったのと同じです。
+FixTweet 公式の Bot は [Things to tackle in the future](https://github.com/FixTweet/FixTweet#things-to-tackle-in-the-future) で言っているようにまだない様ですが、サードパーティ製のものがあります。機能は今回私が作ったのと同じです。
 
 https://top.gg/bot/1164651057243238400
 
