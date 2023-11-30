@@ -56,7 +56,7 @@ https://docs.shuttle.rs/getting-started/idle-projects#configuring-the-timeout
 
 実際書いた Rust コードはほんの数十行程度です（ライブラリが素晴らしい）
 
-https://github.com/senkenn/discord-bot-x2twitter/blob/dab1983c44797474a7f630be53dbd75a28cd5766/src/main.rs#L14-L37
+https://github.com/senkenn/discord-bot-x2twitter/blob/316137492d926510c776ff640f71ac77e7ca841f/src/main.rs#L14-L37
 
 正規表現で URL を検知して、FixTweet に書き換えて再送しています。無駄に複数の X リンクがあっても処理できるようにしています。
 Result 型はやはり素晴らしいですね。私は TypeScript をよく書きますが、最近個人開発で Result 型を導入しました。
