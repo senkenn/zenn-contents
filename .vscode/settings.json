@@ -8,7 +8,7 @@
     "zenn"
   ],
   "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
     "editor.formatOnSave": true,
     "editor.quickSuggestions": {
       "other": true,
@@ -19,8 +19,10 @@
   "markdown.extension.toc.orderedList": false,
   "markdown.extension.orderedList.marker": "one",
   "pasteImage.path": "../images/${currentFileNameWithoutExt}",
+  "markdown-image.base.fileNameFormat": "${mdname}/${YY}-${MM}-${DD}-${HH}-${mm}-${ss}",
   "markdownlint.config": {
     "MD034": false,
     "MD045": false
-  }
+  },
+  "markdown.editor.pasteUrlAsFormattedLink.enabled": "smart"
 }
