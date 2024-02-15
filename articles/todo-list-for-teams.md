@@ -160,7 +160,7 @@ https://github.com/senkenn/todo-list-for-teams/blob/e59ac5f6e3cc5bba133ec2028734
 `getElements`関数を定義して、455行目で再度`getElements`を呼び出すことで再帰的にTreeアイテムを取得できます。
 もしかしたらVSCodeモジュールにいい感じのメソッドがあるかもしれませんが、これでTreeViewを実装した部分のコードを疑いながらテストすることができます。
 
-## GitHub ActionsでのCI
+### GitHub ActionsでのCI
 
 ちなみに、結合テストはGitHub Actionsでも動かしています。
 
