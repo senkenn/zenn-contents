@@ -9,7 +9,7 @@ published: true
 ソースコードに`TODO:` や `FIXME:` のようなプリフィックスをつけてコメントを書いて、それを [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree) や [Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus) といった拡張機能で管理している人はいると思います。そんな人はチーム開発していてTODOリストを見たときに、
 > 他の人が書いたTODO邪魔だなあ。非表示にできればなあ。
 >
-と思ったことはないでしょうか？ありますよね？あるんです。
+と思ったことはないでしょうか？ないわけ無いですよね？ありますよね？あるんです。
 
 今回はこの問題を解決する拡張機能を作りました。`Todo List for Teams` です。
 
@@ -108,12 +108,12 @@ Shell部分は結構簡単になるかなと思ったらそこそこのロジッ
 ReferenceError: afterEach is not defined
 ```
 
-というようにエラーが出てしまい、同じようなIssueを探しましたが自力解決が難しそうでした。
-このエラー関連を探していたら見つけたのがこのIssueです。
+というようにエラーが出てしまい、同じようなIssueを探しましたが見つからず、自力解決が難しそうでした。
+このエラー関連で探していたところに見つけたのがこのIssueです。
 
 https://github.com/microsoft/vscode-test/issues/37
 
-Jestへの置き換えをする試みで、このIssueにあるコメントからJest用のテンプレートを作ってくださった方がおり、大変参考になりました。
+このIssueはJestへの置き換えをする試みで、ここにあるコメントから下のリポジトリのようにJest用のテンプレートを作ってくださった方がおり、大変参考になりました。Jestでは`afterEach`のメソッドを使うことができたので満足です。
 
 https://github.com/daddykotex/jest-tests
 
@@ -159,6 +159,8 @@ https://github.com/senkenn/todo-list-for-teams/blob/e59ac5f6e3cc5bba133ec2028734
 
 `getElements`関数を定義して、455行目で再度`getElements`を呼び出すことで再帰的にTreeアイテムを取得できます。
 もしかしたらVSCodeモジュールにいい感じのメソッドがあるかもしれませんが、これでTreeViewを実装した部分のコードを疑いながらテストすることができます。
+
+## GitHub ActionsでのCI
 
 ちなみに、結合テストはGitHub Actionsでも動かしています。
 
