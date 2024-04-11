@@ -1,8 +1,8 @@
 ---
-title: "ORMなんていらない？！生SQLクエリ開発を超絶楽にするVSCode拡張機能を作った"
+title: "ORMなんていらない？！生SQLクエリ開発を超絶楽にするVSCode拡張を作った [TS+Rust+WASM]"
 emoji: "🎉"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["vscode", "sql", "sqls", "sqlsurge", "typescript"]
+topics: ["vscode", "sql", "sqls", "sqlsurge", "rust"]
 published: true
 ---
 
