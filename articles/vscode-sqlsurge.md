@@ -25,18 +25,19 @@ Rust with SQLx ⇩
 
 https://marketplace.visualstudio.com/items?itemName=senken.sqlsurge
 
-sqlsurge に使われている SQL の LSP には Golang 製 の [sqls](https://github.com/sqls-server/sqls) を使っているので、
+名前は sqlsurge[^1] です。sqlsurge では SQL の Language Server に Golang 製 の [sqls](https://github.com/sqls-server/sqls) を使っているので、
+
+[^1]: もちろん sqls が由来です。surge は急上昇とか躍進とかの意味があるみたいです。ChatGPT と一緒に考えました。気に入ってます。
 
 - Golang
 - sqls
 
-が必須となります。
-sqls をインストールしている人は限られていると思うのでインストールガイドを用意しました。
+が必須となります。sqls をインストールしている人は限られていると思うのでインストールガイドを用意しました。
 
 ![alt text](/images/vscode-sqlsurge/sqlsurge-cut.gif)
-TypeScript や Rust ファイルを開くと出てくるポップアップで"Install with command"を選ぶとターミナルでインストールコマンドが走ります[^1]。画面リロードしたら補完が効くようになります。
+TypeScript や Rust ファイルを開くと出てくるポップアップで"Install with command"を選ぶとターミナルでインストールコマンドが走ります[^2]。画面リロードしたら補完が効くようになります。
 
-[^1]: Go ライブラリのキャッシュがあるので GIF では 3 秒くらいで終わってますが、初回は 30 秒くらいはかかると思います。
+[^2]: Go モジュールのキャッシュがあるので GIF では sqls のインストールが 3 秒くらいで終わってますが、初回は 30 秒くらいはかかると思います。
 
 また、自動補完したい場合、VSCode では文字列中の自動補完はデフォルトで無効になっているので、以下の設定をする必要があります。
 
@@ -56,16 +57,16 @@ https://zenn.dev/mizchi/articles/markdown-code-features
 
 これがなければおそらく私の拡張機能も作れませんでした。@mizchi さんバンザイ。
 
-この記事では触れていませんがどうやっているかというと、VSCode API の [Virtual Document](https://code.visualstudio.com/api/extension-guides/virtual-documents) を使って、仮想的に SQL ファイルを作成します。
+この記事では触れていませんがどうやっているかというと、VSCode API の [Virtual Document](https://code.visualstudio.com/api/extension-guides/virtual-documents) を使って、仮想ファイル及びドキュメントを作成します（今回は SQL ファイル）。
 
-そして、ここでその仮想ドキュメントに対して SQL の LSP を発火しています。
+そして、以下の部分で仮想化されたドキュメントに対して SQL の LSP を発火します。
 
 https://github.com/senkenn/sqlsurge/blob/ebb67d900e0b5f9cf603dd53a34f8fab4f7ce2be/vsce/src/extension.ts#L105-L113
 今開いているファイルと仮想的な SQL ファイルが同じエディターを共有しているので、ポジションを指定してあげれば TypeScript や Rust の上に SQL の補完が効くわけです。
 
 おそらくですが、HTML 上で CSS や JS の補完が効くのも同じ仕組みだと思います。
 
-この機能は VSCode だけなんですかね。Vim とかでもできるのでしょうか。どなたらご存知でしたら教えてください。
+この機能は VSCode だけなんですかね。Vim とかでもできるんでしょうかね。
 
 ### 生 SQL の検出
 
@@ -121,7 +122,8 @@ https://github.com/senkenn/sqlsurge/blob/ebb67d900e0b5f9cf603dd53a34f8fab4f7ce2b
 
 ## まとめ
 
-生 SQL クエリで補完が効く拡張機能を作りました。仕事で生 SQL を強いられている方や ORM に恨みを感じている方などはぜひ使ってみてください。
+生 SQL クエリで補完が効く拡張機能を作りました。既にあるかなと思って調べてみましたがない感じですかね？もしあれば教えてください。
+仕事で生 SQL を強いられている方や ORM に恨みを感じている方などはぜひ使ってみてください。
 
 GitHub の Star や拡張機能のレビューなどがもらえると非常にやる気が上がります :pray:
 
@@ -132,7 +134,7 @@ https://marketplace.visualstudio.com/items?itemName=senken.sqlsurge
 
 ## おまけ
 
-Prisma に同じような機能を欲している Issue があったので拡張機能作ったよとコメントした[^2]ところ、なんと [Prisma の方](https://github.com/aqrln)から Star をいただきました！！大変感謝！恐悦至極！唯我独尊！
+Prisma に同じような機能を欲している Issue があったので拡張機能作ったよとコメントした[^3]ところ、なんと [Prisma の方](https://github.com/aqrln)から Star をいただきました！！大変感謝！恐悦至極！唯我独尊！
 https://github.com/prisma/prisma/issues/3550
 
-[^2]: Prisma にコントリビュートすれば良かったのでは？という考えもありますが、sqlsurge は色んな言語・ライブラリ上で動作することを目指しているので、ちょっと方向性がずれているかなと思いました。というかプライベートで SQLx を使っていく予定なので、ついでに Prisma にも対応したという感じです。
+[^3]: Prisma にコントリビュートすれば良かったのでは？という考えもありますが、sqlsurge は色んな言語・ライブラリ上で動作することを目指しているので、ちょっと方向性がずれているかなと思いました。というかプライベートで SQLx を使っていく予定なので、ついでに Prisma にも対応したという感じです。
