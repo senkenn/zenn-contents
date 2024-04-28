@@ -66,6 +66,18 @@ https://github.com/senkenn/sqlsurge/blob/ebb67d900e0b5f9cf603dd53a34f8fab4f7ce2b
 
 おそらくですが、HTML 上で CSS や JS の補完が効くのも同じ仕組みだと思います。
 
+:::details [2024/4/29 追記] 色々調べていたらそれに該当する公式ドキュメントを見つけました
+
+https://code.visualstudio.com/api/language-extensions/embedded-languages
+
+Request Forwarding というのがそれです。補完やエラーといった Language Service の機能を VSCode API を通じて橋渡しできます。今回の補完で言えば Go で作られた SQL Language Server が `vscode.executeCompletionItemProvider` を通じて提供できているというわけです。
+
+読み間違ってなければ HTML 上での CSS や JS の Language Server が効くのも、 CSS, JS のそれぞれで Language Service を実装し、それを Request Forwarding で HTML に適用しているということですね。
+
+おそらく @mizchi さんもこちらを見て実装されたんだと思います。
+
+:::
+
 この機能は VSCode だけなんですかね。Vim とかでもできるんでしょうかね。
 
 ### 生 SQL の検出
