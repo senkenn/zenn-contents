@@ -123,14 +123,12 @@ https://github.com/senkenn/sqlsurge/blob/ebb67d900e0b5f9cf603dd53a34f8fab4f7ce2b
 - [x] Support for Prisma in TypeScript
 - [x] Support for SQLx in Rust
 - [x] Install guide for sqls
-- [ ] Format SQL
+- [x] Format SQL (2024/5/3 Support)
 - [ ] Support custom functions for raw SQL queries, not just Prisma and SQLx
 - [ ] Execute SQL query
 - [ ] Syntax highlight for SQL
 - [ ] Show quick info symbol
 - [ ] Show sqls config with tree view
-
-フォーマットと カスタム関数は少なくとも対応する予定です。
 
 ## まとめ
 
