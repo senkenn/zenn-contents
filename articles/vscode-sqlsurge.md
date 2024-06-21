@@ -124,7 +124,7 @@ https://github.com/senkenn/sqlsurge/blob/ebb67d900e0b5f9cf603dd53a34f8fab4f7ce2b
 - [x] Support for SQLx in Rust
 - [x] Install guide for sqls
 - [x] Format SQL (2024/5/3 Support)
-- [ ] Support custom functions for raw SQL queries, not just Prisma and SQLx
+- [x] Support custom functions for raw SQL queries, not just Prisma and SQLx (2024/6/21 Support)
 - [ ] Execute SQL query
 - [ ] Syntax highlight for SQL
 - [ ] Show quick info symbol
