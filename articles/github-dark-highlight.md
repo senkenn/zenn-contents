@@ -12,7 +12,7 @@ Before
 After
 ![alt text](/images/github-dark-highlight/image-1.png)
 
-## TL:DR
+## TL;DR
 
 Magic CSS をインストールして
 
