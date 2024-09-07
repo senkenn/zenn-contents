@@ -29,7 +29,7 @@ published: true
 
 https://biomejs.dev/reference/vscode/
 
-## defaultFormatter はなんでなぜ各言語で設定する必要があるのか
+## defaultFormatter はなぜ各言語で設定する必要があるのか
 
 defaultFormatter は settings.json の root に設定する場合と、各言語ごとに設定する場合があります。
 
