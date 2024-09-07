@@ -1,5 +1,5 @@
 ---
-title: "Biome VSCode拡張を使おうとしているならとりあえずこの設定にしておけ"
+title: "Biome VSCode拡張を使っているならとりあえずこの設定にしておけ"
 emoji: "🤖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["vscode", "biome"]
