@@ -10,7 +10,7 @@ published: true
 この記事は「[Visual Studio Code Advent Calendar 2024](https://qiita.com/advent-calendar/2024/visual_studio_code)」18 日目の記事です。
 :::
 
-私は今まで 6 つほど VS Code 拡張機能開発に携わってきました。以下の一覧です。
+私は今まで 6 つほど VS Code 拡張機能開発に携わってきました。以下一覧です。
 
 :::details 自作 & コントリビュートした VS Code 拡張一覧
 
@@ -34,7 +34,7 @@ https://github.com/d-kimuson/ts-type-expand/pull/379
 
 :::
 
-今回はその中で得た公式ドキュメントには書かれていないようなニッチな Tips をいくつか紹介します。
+今回はその中で得た、公式ドキュメントには書かれていないようなニッチな Tips をいくつか紹介します。
 
 ## デバッグが便利になる `launch.json` の Tips
 
@@ -99,7 +99,7 @@ https://github.com/d-kimuson/ts-type-expand/pull/379
 
 ![alt text](/images/vsce-tips-2024/image.png)
 
-と、ジャンプしやすくなります（sourcemap 付きでのビルドを忘れずに）。`skipFiles` はデバッグ時にスキップするファイルを指定するオプションです。
+と、ジャンプしやすくなります（source map 付きでのビルドを忘れずに）。`skipFiles` はデバッグ時にスキップするファイルを指定するオプションです。
 
 ## 結合テストの Tips
 
@@ -113,7 +113,7 @@ test-integration/ # 結合テスト用のテストコード
 ```
 
 結合テストと単体テストで config や snapshot などがバッティングしたりするので、このように分けるのがおすすめです（場合によっては Monorepo にしてもいいです）。以前 snapshot で結合テストだけにあるせいで、単体テストだけ実行するときに snapshot 差分が出たりしてアーキテクチャ変更に迫られたことがありました。
-単体テストは好みで `src` 下に置いたり、新たにディレクトリを作ったりするといいでしょう。
+単体テストは好みで `src` 下に置いたり、新たにディレクトリを作ったりしてもいいです。
 
 [Vitest VS Code 拡張](https://github.com/vitest-dev/vscode) [^vitest]でも `src`, `samples`, `test-e2e` のような ディレクトリ構成にしています。
 
