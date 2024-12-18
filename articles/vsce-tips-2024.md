@@ -99,7 +99,7 @@ https://github.com/d-kimuson/ts-type-expand/pull/379
 
 ![alt text](/images/vsce-tips-2024/image.png)
 
-と、ジャンプしやすくなります（source map 付きでのビルドを忘れずに）。`skipFiles` はデバッグ時にスキップするファイルを指定するオプションです。
+と、`extension.ts` になってジャンプしやすくなります（source map 付きでのビルドを忘れずに）。`skipFiles` はデバッグ時にスキップするファイルを指定するオプションです。
 
 ## 結合テストの Tips
 
