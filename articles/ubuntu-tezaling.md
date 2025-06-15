@@ -70,13 +70,7 @@ sudo systemctl status NetworkManager
 ❯ ll /etc/netplan
 -rw------- 1 root root 644  6月 16 03:03 /etc/netplan/50-cloud-init.yaml
 -rw------- 1 root root 698  6月 16 03:03 /etc/netplan/90-NM-0432f754-27e3-40d3-b575-477b4fa11d97.yaml
--rw------- 1 root root 823  6月 16 03:03 /etc/netplan/90-NM-4c17c1d4-c64b-4094-b179-dc029ef9a84d.yaml
--rw------- 1 root root 598  6月 16 03:03 /etc/netplan/90-NM-731dd409-62d1-4406-af23-38a1e2d56d5f.yaml
--rw------- 1 root root 592  6月 16 03:03 /etc/netplan/90-NM-7bbf0eae-d14d-4a7f-ad95-ca6aa28226c3.yaml
--rw------- 1 root root 769  6月 16 03:03 /etc/netplan/90-NM-9943548c-f62f-4c90-a0cf-771ae6477175.yaml
--rw------- 1 root root 769  6月 16 03:03 /etc/netplan/90-NM-a81d4276-eb01-4f47-9dee-0c522dadf40b.yaml
--rw------- 1 root root 763  6月 16 03:03 /etc/netplan/90-NM-ce45e9fa-84c4-4d1e-8e34-9c0bcf5f44bc.yaml
--rw------- 1 root root 686  6月 16 03:03 /etc/netplan/90-NM-d38fca51-006c-42df-b95e-f378f666d39d.yaml
+...
 -rw------- 1 root root 571  6月 16 03:03 /etc/netplan/90-NM-fdc8d0ea-2e73-4e25-9b26-0c33e1b40b58.yaml
 ```
 
@@ -115,6 +109,10 @@ network:
 ```
 
 接続に失敗した iPhone 名が書かれていた。
+
+:::message alert
+この netplan の設定ファイルはパスワードやセキュリティ設定なども含まれているので、本来公開してはいけないものです。この設定ファイル自体は接続前なのでパスワードもないですし、SSID も今は異なるのであくまでサンプルとして公開できています。
+:::
 
 この状態でとりあえず `netplan apply` を実行してみた。
 
