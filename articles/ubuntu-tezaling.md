@@ -19,7 +19,7 @@ published: true
 
 いつものように iPhone の設定からテザリングをオンにして、Ubuntu で iPhone の Wi-Fi に接続。
 
-![alt text](/images/ubuntu-tezaling/image-2.drawio.svg)
+![alt text](/images/ubuntu-tezaling/image-2.drawio.png)
 
 「らん らんらら らんらん」というふざけた名前が私の iPhone です[^1]。
 
