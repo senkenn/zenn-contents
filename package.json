@@ -1,5 +1,11 @@
 {
   "name": "zenn-contents",
   "repository": "git@github.com:senkenn/zenn-contents.git",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "new:article": "pnpm dlx zenn-cli new:article"
+  },
+  "devDependencies": {
+    "zenn-cli": "^0.2.3"
+  }
 }
