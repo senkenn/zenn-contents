@@ -10,13 +10,23 @@ published: false
 
 https://github.com/senkenn/github-client
 
-## はじめに
+## 動機
 
-GitHub Client を WYSIWYG で作りたくなった動機と狙い
+- いちいち編集に入るのがめんどい
+- いちいち preview するのがめんどい
+
+-> WYSIWYG じゃね？
 
 ## 要件整理
 
-どんな機能・UI を目標にしていたか、WYSIWYG を選んだ理由
+- 目的
+  - GitHub Issue コメントを WYSIWYG で編集できるクライアント
+  - UI: GitHub ライク
+  - GitHub にコピペした画像もプレビューできること
+- 技術面
+  - wysiwyg editor: TipTap
+  - md to html: markdown-it
+  - html to md: Turndown
 
 ## 実装トライ 1
 
