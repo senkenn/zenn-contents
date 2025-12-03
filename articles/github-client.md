@@ -1,5 +1,5 @@
 ---
-title: "GitHub Client を WYSIWYG で作ってみたらめちゃくちゃめんどかった件"
+title: "WYSIWYG って地獄なの？ -> 自作 GitHub Client で使おう！-> めちゃくちゃ地獄を見た件"
 emoji: "🔖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["github", "wysiwyg"]
@@ -8,54 +8,52 @@ published: false
 
 ## 作ったもの
 
+| GitHub                                               | My GitHub Client                               |
+| ---------------------------------------------------- | ---------------------------------------------- |
+| ![alt text](/images/github-client/image-4.png =800x) | ![alt text](/images/github-client/image-3.png) |
+
 https://github.com/senkenn/github-client
+
+（気が向いたらスター :star: ください :pray:）
 
 ## 動機
 
-- いちいち編集に入るのがめんどい
-- いちいち preview するのがめんどい
+- GitHub Issue での Markdown 操作がだるい
+  - GitHub Projects & Issues でタスク管理をしていた
+  - Markdown でいちいち編集に入る or Preview するのがめんどい
+- WYSIWYG 辛いらしい？と興味を持った
+  - これをみてそんなに辛いのかと知った
+    [【React】リッチテキストエディタ（Quill、Tiptap、Slate...）の考え方や前提知識](https://zenn.dev/meijin/articles/rich-text-editor-basis-knowledge)
+  - 自分で実際に作らないと辛さわからないパターンと感じた
 
--> WYSIWYG じゃね？
+-> GitHub Client を WYSIWYG で作れば一石二鳥じゃね？？？
 
 ## 要件整理
 
-- 目的
-  - GitHub Issue コメントを WYSIWYG で編集できるクライアント
+- 機能面
+  - GitHub Issue コメントを WYSIWYG で編集できること
+  - ノーステップで編集に入れること
   - UI: GitHub ライク
   - GitHub にコピペした画像もプレビューできること
 - 技術面
-  - wysiwyg editor: TipTap
-  - md to html: markdown-it
-  - html to md: Turndown
+  - wysiwyg editor: TipTap （上の記事見てなんか良さそうだったから）
+  - md to html: markdown-it （ゆうめいだったから）
+  - html to md: Turndown （ゆうめいだったから）
+- おまけ技術
+  - Web フレームワーク・ライブラリ: React + Vite
+  - GitHub API クライアント: Octokit
+  - 認証：GitHub Access Token (`gh auth token` で発行)
+  - ルーティング: Tanstack Router（めっちゃ体験良かったですがこの記事では触れません）
 
-## 実装トライ 1
+## 本題： WYSIWYG で地獄を見た
 
-採用したツールやライブラリ、最初の設計方針と期待
+## サブ題： Private リポジトリ上の画像を表示できない
 
-## ハマりポイント
-
-プレビュー同期・複雑な UI 状態・API 連携などで直面した課題
-
-## 切り札と妥協案
-
-最終的に取ったワークアラウンドや設計見直し
-
-## 学びと反省
-
-WYSIWYG のメリット/デメリット整理、今後同じ題材にどう臨むか
-
-## まとめと次の一歩
-
-読者への示唆、別アプローチや改善アイデアへの誘導
-
-##
-
-## CDP(Chromium Devetools Protocol)での GitHub 認証の突破
+### CDP(Chromium Devetools Protocol)での GitHub 認証の突破
 
 - 画像を GitHub 上でペーストすると GitHub のサーバー[^1]に保存され、その画像リンクが md 上に書かれる。
 - Private リポジトリ上の画像は、今回のサードパーティ Client からはもちろん見れない
   - 仕事でタスクを GitHub Projects で管理しており、 Issue コメントををよく使うので Private リポジトリ対応は必須だった
--
 
 [^1]: ちなみに AWS S3 にリダイレクトされます。
 
@@ -75,3 +73,15 @@ vite.config.ts:176 以降の extraHTTPHeaders.Cookie = <cookies> を参照。
 
 ブラウザの「ドメインごとの Cookie 自動送信」ルールは、ブラウザ → サーバの通信に適用。今回の Cookie 利用はサーバ側の手動ヘッダ付与なので、github.com→localhost のドメイン不一致問題は発生しません。
 CORS 回避はプロキシで実現。フロントは同一オリジン /api/pw-fetch へアクセスしているだけです。
+
+## 切り札と妥協案
+
+最終的に取ったワークアラウンドや設計見直し
+
+## 学びと反省
+
+WYSIWYG のメリット/デメリット整理、今後同じ題材にどう臨むか
+
+## まとめと次の一歩
+
+読者への示唆、別アプローチや改善アイデアへの誘導
