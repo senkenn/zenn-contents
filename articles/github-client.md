@@ -3,7 +3,7 @@ title: "WYSIWYG って地獄なの？ -> 自作 GitHub Client で使おう！-> 
 emoji: "🔖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["github", "wysiwyg"]
-published: false
+published: true
 ---
 
 ## 作ったもの
