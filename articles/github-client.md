@@ -6,6 +6,10 @@ topics: ["github", "wysiwyg"]
 published: true
 ---
 
+:::message
+この記事は「[GitHub dockyard Advent Calendar 2025](https://qiita.com/advent-calendar/2025/github-dockyard)」 5 日目の記事です。
+:::
+
 ## 作ったもの
 
 | GitHub                                               | My GitHub Client 🎉                            |
