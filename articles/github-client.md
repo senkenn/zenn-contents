@@ -8,7 +8,7 @@ published: false
 
 ## 作ったもの
 
-| GitHub                                               | My GitHub Client                               |
+| GitHub                                               | My GitHub Client :tada:                        |
 | ---------------------------------------------------- | ---------------------------------------------- |
 | ![alt text](/images/github-client/image-4.png =900x) | ![alt text](/images/github-client/image-3.png) |
 
@@ -306,6 +306,7 @@ export function htmlToMarkdown(html: string): string {
 ```
 
 😇😇😇😇😇😇
+:innocent::innocent::innocent::innocent::innocent:
 
 ## まとめ
 
