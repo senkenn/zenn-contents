@@ -201,7 +201,8 @@ export function htmlToMarkdown(html: string): string {
 }
 ```
 
-この時点で結構心が折れかけました。
+この時点で結構心が折れかけました。ここまできたらもう正規表現ではなく、ほんとは自分で parser や generator を実装したほうがいいです。
+でも parser はいやだ parser はいやだ、、、
 
 あとはリストのネストときとかテーブルのサポートとか色々あり、最終的に以下のように。
 
