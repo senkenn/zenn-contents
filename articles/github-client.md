@@ -42,12 +42,41 @@ https://github.com/senkenn/github-client
 - おまけ技術
   - Web フレームワーク・ライブラリ: React + Vite
   - GitHub API クライアント: Octokit
-  - 認証：GitHub Access Token (`gh auth token` で発行)
-  - ルーティング: Tanstack Router（めっちゃ体験良かったですがこの記事では触れません）
+  - 認証：GitHub Access Token
+    - `gh auth token` で発行できるの楽だよね
+  - ルーティング: Tanstack Router
+    - めっちゃ体験良かったですがこの記事では触れません
 
 ## 本題： WYSIWYG で地獄を見た
 
+### まずこの自作 GitHub Client を用いるケースはどんなパターンか
+
+このアプリを用いる場合、大きく以下の２つのユースケースがあります。
+
+1. GitHub 上で書いたコメントを WYSIWYG Client で開くパターン
+1. この WYSIWYG 自作 Client でコメントを書いて、GitHub に反映するパターン
+
+この両方のニーズを満たせないと使い物になりません。
+
+どちらのほうが実装がつらかったか、２です。
+
+1 が簡単なのは自明だと思います。GitHub 上で書いたコメントは Markdown 形式で保存されているので、 markdown-it で HTML に変換して TipTap に流し込むだけです。 GitHub の Markdown はそんなに特殊ではないので parse も簡単でした。
+
+https://github.com/senkenn/github-client/blob/senkenn-patch-2/src/lib/mdHtmlUtils.ts#L7-L15
+
+なぜ２がつらいのか、以下で説明します。
+
+### なぜ WYSIWYG で書いたものを GitHub に反映するパターンがつらいのか
+
+この場合、以下のような処理フローになります。
+
+1. TipTap のドキュメントを HTML 形式で取得
+1. HTML 形式を Markdown 形式に変換 (Turndown)
+1. GitHub API でコメントを更新
+
 ## サブ題： Private リポジトリ上の画像を表示できない
+
+GitHub にアップロードした画像は
 
 ### CDP(Chromium Devetools Protocol)での GitHub 認証の突破
 
