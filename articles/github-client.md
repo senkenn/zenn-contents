@@ -74,9 +74,9 @@ https://github.com/senkenn/github-client/blob/6abe60c8e24c8aa30698250e51bb04fee7
 1. HTML 形式を Markdown 形式に変換 (Turndown)
 1. GitHub API でコメントを更新
 
-この中の html -> markdown が地獄です。
+この中の html -> md が地獄です。今回ここを詳細に説明します。
 
-まず基本系はこちら。
+まず html -> md の基本系はこちら。
 
 ```ts
 export function htmlToMarkdown(html: string): string {
