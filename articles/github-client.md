@@ -38,7 +38,7 @@ https://github.com/senkenn/github-client
   - GitHub Issue コメントを WYSIWYG で編集できること
   - ノーステップで編集に入れること
   - UI: GitHub ライク
-  - GitHub にコピペした画像もプレビューできること
+  - GitHub にコピペした画像もプレビューできること（実装まだなし[^image-preview]）
 - 技術面
   - wysiwyg editor: TipTap （上の記事見てなんか良さそうだったから）
   - md to html: markdown-it （ゆうめいだったから）
@@ -50,6 +50,11 @@ https://github.com/senkenn/github-client
     - `gh auth token` で発行できるの楽だよね
   - ルーティング: Tanstack Router
     - めっちゃ体験良かったですがこの記事では触れません
+
+[^image-preview]:
+    画像ハンドリングも結構厄介で、まず Issue のようなコメントで画像をアップロードすると `https://github.com/user-attachments/assets/{UUIDv4}` のような URL が発行されます。
+    そして、Public なリポジトリはこれは普通に見れますが Private リポジトリ上の画像は認証が必要で、 Octokit ではこの URL をハンドリングするような機構はサポートされていないので、たとえば CDP (Chromium Devetools Protocol) を用いて Chrome の Cookie を読み出し、 Vite のミドルウェアで代理取得のような仕組みを実装する必要がありました。
+    わざわざユーザーに CDP 接続できるようにブラウザを起動してもらうのもどうなの、、、って感じですし、アップロードは？Network を watch して得たドキュメントにない API を使うの？とかあり、結局画像対応は実装断念となりました、、
 
 ## 本題： WYSIWYG で地獄を見た
 
